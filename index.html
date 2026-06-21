@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mario Daquilema — Mi luna constante</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night-deep:#0a0e1f;
+    --night-mid:#131a33;
+    --moon-silver:#e9e6dd;
+    --gold:#d8a858;
+    --eco-green:#4a7c6f;
+    --cream:#f2eee3;
+    --lavender:#8c93b8;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:
+      radial-gradient(ellipse 80% 50% at 50% 0%, rgba(216,168,88,0.07), transparent),
+      radial-gradient(ellipse 60% 40% at 80% 90%, rgba(74,124,111,0.08), transparent),
+      var(--night-deep);
+    color:var(--cream);
+    font-family:'Work Sans', sans-serif;
+    font-weight:300;
+    overflow-x:hidden;
+    min-height:100vh;
+  }
+
+  .sky{
+    position:relative;
+    max-width:760px;
+    margin:0 auto;
+    padding:0 24px 80px;
+  }
+
+  #stars{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:0;
+  }
+  .star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    border-radius:50%;
+    background:var(--moon-silver);
+    animation:twinkle 4s ease-in-out infinite;
+  }
+
+  @keyframes twinkle{
+    0%,100%{opacity:0.15;}
+    50%{opacity:0.9;}
+  }
+
+  section{
+    position:relative;
+    z-index:1;
+  }
+
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.7rem;
+    letter-spacing:0.22em;
+    color:var(--gold);
+    text-align:center;
+    text-transform:uppercase;
+  }
+
+  /* ---------- HERO / ORBIT ---------- */
+
+  .hero{
+    padding-top:64px;
+    text-align:center;
+  }
+
+  .orbit-system{
+    position:relative;
+    width:clamp(260px, 68vw, 380px);
+    aspect-ratio:1;
+    margin:40px auto 24px;
+  }
+
+  .ecosystem{
+    position:absolute;
+    top:50%; left:50%;
+    transform:translate(-50%,-50%);
+    width:32%;
+    aspect-ratio:1;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, rgba(74,124,111,0.9), rgba(74,124,111,0.25) 70%, transparent 100%);
+    box-shadow:0 0 40px rgba(74,124,111,0.5), inset 0 0 18px rgba(242,238,227,0.15);
+    animation:pulse 5s ease-in-out infinite;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  @keyframes pulse{
+    0%,100%{transform:translate(-50%,-50%) scale(1);}
+    50%{transform:translate(-50%,-50%) scale(1.06);}
+  }
+
+  .ecosystem-label{
+    position:absolute;
+    top:50%; left:50%;
+    transform:translate(-50%, 26px);
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.62rem;
+    letter-spacing:0.16em;
+    color:var(--lavender);
+    white-space:nowrap;
+  }
+
+  .orbit-path{
+    position:absolute;
+    inset:6%;
+    border:1px dashed rgba(216,168,88,0.3);
+    border-radius:50%;
+  }
+
+  .orbit-pivot{
+    position:absolute;
+    inset:6%;
+    animation:spin 22s linear infinite;
+  }
+
+  @keyframes spin{
+    to{transform:rotate(360deg);}
+  }
+
+  .moon-anchor{
+    position:absolute;
+    top:-2px;
+    left:50%;
+    transform:translate(-50%,-50%);
+  }
+
+  .moon-spin{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:8px;
+    animation:counterspin 22s linear infinite;
+  }
+
+  @keyframes counterspin{
+    from{transform:rotate(0deg);}
+    to{transform:rotate(-360deg);}
+  }
+
+  .moon-body{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #fff, var(--moon-silver) 55%, var(--gold) 130%);
+    box-shadow:0 0 22px rgba(216,168,88,0.55), 0 0 8px rgba(233,230,221,0.6);
+  }
+
+  .moon-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.62rem;
+    letter-spacing:0.14em;
+    color:var(--gold);
+    white-space:nowrap;
+  }
+
+  .headline{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:500;
+    font-size:clamp(2.1rem, 6vw, 3.4rem);
+    color:var(--cream);
+    margin-top:8px;
+  }
+
+  .subheadline{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:400;
+    font-size:clamp(0.95rem, 2.4vw, 1.15rem);
+    color:var(--lavender);
+    margin-top:10px;
+  }
+
+  /* ---------- MESSAGE ---------- */
+
+  .message{
+    margin-top:88px;
+    max-width:560px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .message p{
+    font-size:clamp(1rem, 2vw, 1.12rem);
+    line-height:1.85;
+    color:var(--cream);
+    opacity:0.92;
+    text-align:center;
+  }
+
+  /* ---------- REASONS ---------- */
+
+  .reasons{
+    margin-top:96px;
+  }
+
+  .reasons-grid{
+    margin-top:32px;
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:1px;
+    background:rgba(216,168,88,0.18);
+    border:1px solid rgba(216,168,88,0.18);
+  }
+
+  .reason-card{
+    background:var(--night-deep);
+    padding:28px 24px;
+  }
+
+  .reason-star{
+    color:var(--gold);
+    font-size:1rem;
+  }
+
+  .reason-title{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:1.05rem;
+    margin-top:10px;
+    color:var(--cream);
+  }
+
+  .reason-text{
+    font-size:0.88rem;
+    line-height:1.65;
+    color:var(--lavender);
+    margin-top:8px;
+  }
+
+  @media (max-width:540px){
+    .reasons-grid{grid-template-columns:1fr;}
+  }
+
+  /* ---------- SIGNATURE ---------- */
+
+  .signature{
+    margin-top:110px;
+    text-align:center;
+    padding-top:40px;
+    border-top:1px solid rgba(216,168,88,0.2);
+  }
+
+  .signature-text{
+    font-size:0.95rem;
+    color:var(--lavender);
+  }
+
+  .signature-name{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:1.4rem;
+    color:var(--gold);
+    margin-top:10px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .star, .ecosystem, .orbit-pivot, .moon-spin{
+      animation:none !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div id="stars"></div>
+
+<div class="sky">
+
+  <section class="hero">
+    <p class="eyebrow">Para mi padre</p>
+
+    <div class="orbit-system">
+      <div class="ecosystem">
+        <span class="ecosystem-label">MI ECOSISTEMA</span>
+      </div>
+      <div class="orbit-path"></div>
+      <div class="orbit-pivot">
+        <div class="moon-anchor">
+          <div class="moon-spin">
+            <div class="moon-body"></div>
+            <span class="moon-label">MARIO DAQUILEMA</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h1 class="headline">Mario Daquilema</h1>
+    <p class="subheadline">La luna que nunca deja de orbitar mi mundo</p>
+  </section>
+
+  <section class="message">
+    <p>
+      Gracias por estar siempre ahí, papá. Tu esfuerzo y tus consejos son la base de todo
+      lo que soy hoy. Estoy orgulloso de ser tu hijo.
+    </p>
+  </section>
+
+  <section class="reasons">
+    <p class="eyebrow">Por qué brillas en mi cielo</p>
+
+    <div class="reasons-grid">
+      <div class="reason-card">
+        <div class="reason-star">✦</div>
+        <h3 class="reason-title">Constancia</h3>
+        <p class="reason-text">Siempre presente, pase lo que pase.</p>
+      </div>
+      <div class="reason-card">
+        <div class="reason-star">✦</div>
+        <h3 class="reason-title">Sacrificio</h3>
+        <p class="reason-text">Tu esfuerzo se volvió mis oportunidades.</p>
+      </div>
+      <div class="reason-card">
+        <div class="reason-star">✦</div>
+        <h3 class="reason-title">Sabiduría</h3>
+        <p class="reason-text">Tus consejos siempre llegan a tiempo.</p>
+      </div>
+      <div class="reason-card">
+        <div class="reason-star">✦</div>
+        <h3 class="reason-title">Amor</h3>
+        <p class="reason-text">Se nota en cada gesto, sin decir nada.</p>
+      </div>
+      <div class="reason-card">
+        <div class="reason-star">✦</div>
+        <h3 class="reason-title">Fortaleza</h3>
+        <p class="reason-text">Nunca te vi rendirte, ni en lo difícil.</p>
+      </div>
+      <div class="reason-card">
+        <div class="reason-star">✦</div>
+        <h3 class="reason-title">Ejemplo</h3>
+        <p class="reason-text">Aprendí más viéndote que escuchándote.</p>
+      </div>
+      <div class="reason-card">
+        <div class="reason-star">✦</div>
+        <h3 class="reason-title">Paciencia</h3>
+        <p class="reason-text">Esperaste mis tiempos sin presionarme.</p>
+      </div>
+      <div class="reason-card">
+        <div class="reason-star">✦</div>
+        <h3 class="reason-title">Trabajo</h3>
+        <p class="reason-text">Nunca faltó nada gracias a tus manos.</p>
+      </div>
+      <div class="reason-card">
+        <div class="reason-star">✦</div>
+        <h3 class="reason-title">Honestidad</h3>
+        <p class="reason-text">Me enseñaste a decir la verdad sin miedo.</p>
+      </div>
+      <div class="reason-card">
+        <div class="reason-star">✦</div>
+        <h3 class="reason-title">Protección</h3>
+        <p class="reason-text">Con vos cerca, nunca sentí que faltaba algo.</p>
+      </div>
+      <div class="reason-card">
+        <div class="reason-star">✦</div>
+        <h3 class="reason-title">Humildad</h3>
+        <p class="reason-text">Diste mucho sin esperar que lo notaran.</p>
+      </div>
+      <div class="reason-card">
+        <div class="reason-star">✦</div>
+        <h3 class="reason-title">Orgullo</h3>
+        <p class="reason-text">Llevar tu apellido es llevar tu ejemplo.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="signature">
+    <p class="signature-text">Con todo mi orgullo y todo mi cariño,</p>
+    <p class="signature-name">Tu hijo, Estiben</p>
+  </section>
+
+</div>
+
+<script>
+  const starsContainer = document.getElementById('stars');
+  const STAR_COUNT = 90;
+  for (let i = 0; i < STAR_COUNT; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.top = Math.random() * 100 + '%';
+    star.style.left = Math.random() * 100 + '%';
+    star.style.animationDelay = (Math.random() * 4) + 's';
+    star.style.opacity = (0.2 + Math.random() * 0.6).toFixed(2);
+    starsContainer.appendChild(star);
+  }
+</script>
+
+</body>
+</html>
